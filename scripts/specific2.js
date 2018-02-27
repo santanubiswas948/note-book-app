@@ -208,7 +208,7 @@ function fun_save(t)
                   if(document.getElementById(target_input))
                   {
                     //alert(target_input);
-                    //dynamicPath(div_outer,document.getElementById(target_input));
+                    // dynamicPath(div_outer,document.getElementById(target_input));
                   }
                   fun_del_textarea();
                   fun_del_select_color_option();

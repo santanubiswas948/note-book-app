@@ -1,5 +1,5 @@
 # Note Book
-It is an app Note Book App purely created by javascript with many good and beautiful features with directional view.
+It is an app Note Book App purely created by javascript with many good and beautiful features We are working in this app.
 # Demo
 [This]( https://santanubiswas948.github.io/note-book-app/) is a simple demo of Note-book.
 # Installation
