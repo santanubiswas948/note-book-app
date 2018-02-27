@@ -1,0 +1,63 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+    <head>
+        <title>Editor For Remembering Note</title>
+        <style type="text/css">
+                input[type='file'] {
+                opacity:0
+                }
+        </style>
+
+    </head>
+
+<!--Startting require portion------------------------------>
+    <body>
+        <input type="file"><span id='val'></span>
+        <table align=center>
+            <tr id='heading_tbl_row'>
+                <td><button id='btn_open'>Open</button></td>
+                <td><input type="button" value='New' id='new_doc_open_btn'></td>
+            </tr>
+        </table>
+<!--End Of require Portion--->
+
+<!---For create new Doc part------------>
+        <table align=center>
+            <td><div id="for_new_doc"></div></td>
+        </table>
+<!--End Of creation new note part---->
+
+
+
+
+
+<!--Rendering portion of document for visualization after save or opening------------------->
+
+        <div >
+            <!--<table align=center id="render_doc" border="0" cellpadding='5' cellspacing='0px 10px' bordercolor='#000'>
+
+            </table>-->
+            <div id="render_doc">
+
+            </div>
+        </div>
+
+
+
+
+<!--End Of rendering portion------------------->
+
+
+
+
+
+
+
+
+
+        <script src="scripts/svgDynamicDirectionalPath.js"></script>
+        <script src="scripts/specific2.js"></script>
+        <script src="scripts/specific.js"></script>
+
+    </body>
+</html>

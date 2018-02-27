@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Connect divs with SVG</title>
+  <link rel="stylesheet" type="text/css" href="svg.css">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+</head>
+<body>
+<div id="svgContainer" style="margin: 50px 50px;">
+    <svg id="svg1" width="0" height="0" >
+        <path
+            id="path1"
+            d="M0 0"         
+            stroke="#000" 
+            fill="none" 
+            stroke-width="12px";/>
+         <path
+            id="path2"
+            d="M0 0"             
+            stroke="#000" 
+            fill="none" 
+            stroke-width="12px";/>
+         <path
+            id="path3"
+            d="M0 0"      
+            stroke-width="8px"
+            style="stroke:#000; fill:none;"/>
+          <path
+            id="path4"
+            d="M0 0"    
+            stroke-width="12px"         
+            style="stroke:#000; fill:none;  stroke-width: 12px;" />
+          <path
+            id="path5"
+            d="M0 0"    
+            stroke-width="10px"         
+            style="stroke:#000; fill:none;"/>
+          <path
+            id="path6"
+            d="M0 0"    
+            stroke-width="10px"         
+            style="stroke:#000; fill:none;"/>
+    </svg>
+</div>
+
+<div id= "outer">
+  <div id="teal"></div>
+  <div id="red"></div>
+  <div id="green"></div>
+  <div id="purple"></div>
+  <div id="orange"></div>
+  <div id="aqua"></div>
+</div>
+
+<script src="svgDraw.js"></script>
+</body>
+</html>
