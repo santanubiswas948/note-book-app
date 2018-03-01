@@ -41,10 +41,13 @@ function fun_edit(evt)
                 //for delete old  textarea if repeated clicked  new note create button-----------
                  fun_del_textarea();
                  fun_del_select_color_option();
+                 fun_del_select_theme_option();
                  fun_del_save_button();
                  fun_del_target_input();
               }
               fun_create_save_btn(t);
+              color_option();
+              theme_option();
               fun_create_target_input();
           var x=document.getElementById('for_new_doc');
           x.appendChild(c_textarea);
@@ -67,7 +70,6 @@ function fun_edit(evt)
               cr_save_btn.innerHTML='Save';
               cr_td_for_save_btn.appendChild(cr_save_btn);
               heading_tbl_row.appendChild(cr_td_for_save_btn);
-              color_option();
       }
 /// For creation of input for adding target note-------------------
     function fun_create_target_input()
@@ -119,10 +121,25 @@ function fun_save(t)
               child++;
               var div_outer=document.createElement("DIV");
           }
-                  var DIV_outer_obj={
-                      id : child,
-                      style : 'margin:40px;float:left; width:300px;height:auto;  border:1px solid #000; border-radius:10%; text-align:center;padding:20px 20px;'
-                  }
+          var DIV_outer_obj;
+          if(document.getElementById('new_doc_txtarea1'))
+          {
+            DIV_outer_obj={
+                        id : child,
+                        style : 'margin:40px;float:left; width:300px;height:auto;\
+                        border:1px solid #000; border-radius:10%; text-align:center;\
+                        padding:20px 20px;background-color:'+document.getElementById('new_doc_txtarea1').style.backgroundColor+';color:'+document.getElementById('new_doc_txtarea1').style.color
+                    }
+          }
+          else
+          {
+            DIV_outer_obj={
+                        id : child,
+                        style : 'margin:40px;float:left; width:300px;height:auto;\
+                        border:1px solid #000; border-radius:10%; text-align:center;\
+                        padding:20px 20px;'
+                    }
+          }
                   var P_attr_obj={
                           id    : 'p_'+child,
                   }
@@ -143,10 +160,7 @@ function fun_save(t)
                   var cr_p=document.createElement("P");
                   var cr_btn_edit=document.createElement('INPUT');
                   var cr_Br_elm=document.createElement('BR');
-                  for(var prop in DIV_outer_obj)
-                      {
-                          div_outer.setAttribute(prop,DIV_outer_obj[prop]);
-                      }
+
                    for(var prop in P_attr_obj)
                       {
                           cr_p.setAttribute(prop,P_attr_obj[prop]);
@@ -162,12 +176,16 @@ function fun_save(t)
                           {
                             if(new_doc_attrs_arr[i].name!='rows' && new_doc_attrs_arr[i].name!='cols' && new_doc_attrs_arr[i].name!='id')
                                 {
+                                    // div_outer.setAttribute(new_doc_attrs_arr[i].name,new_doc_attrs_arr[i].value);
                                     cr_p.setAttribute(new_doc_attrs_arr[i].name,new_doc_attrs_arr[i].value);
                                 }
                           }
                           cr_p.innerHTML=document.getElementById('new_doc_txtarea1').value;
                       }
-
+                      for(var prop in DIV_outer_obj)
+                          {
+                              div_outer.setAttribute(prop,DIV_outer_obj[prop]);
+                          }
                   cr_btn_edit.addEventListener('click',fun_edit);
                   var cr_span_elm1=document.createElement('SPAN');
                   cr_span_elm1.appendChild(cr_btn_edit);
@@ -212,6 +230,7 @@ function fun_save(t)
                   }
                   fun_del_textarea();
                   fun_del_select_color_option();
+                  fun_del_select_theme_option();
                   fun_del_save_button();
                   fun_del_target_input();
 }
@@ -221,7 +240,19 @@ function fun_save(t)
       {
           var heading_tbl_row=document.getElementById('heading_tbl_row');
           var cr_td_for_select_color=document.createElement("TD");
-          var cr_select_option=document.createElement("SELECT");
+          var cr_input=document.createElement("INPUT");
+          var cr_input_attrs={
+            type : 'color',
+            id   : 'select_color',
+            value : '#fffffff'
+          }
+          for(var elm_attr in cr_input_attrs)
+          {
+            cr_input.setAttribute(elm_attr,cr_input_attrs[elm_attr]);
+          }
+          cr_input.addEventListener('change',funChangeColor);
+          cr_td_for_select_color.appendChild(cr_input);
+          /*var cr_select_option=document.createElement("SELECT");
           cr_select_option.setAttribute('id','select_color');
           cr_select_option.addEventListener('change',funChangeColor);
           var color_arr=['red','black','green','blue','yellow'];
@@ -231,9 +262,33 @@ function fun_save(t)
           option.setAttribute('value',elm);
           cr_select_option.appendChild(option);
           });
-          cr_td_for_select_color.appendChild(cr_select_option);
+          cr_td_for_select_color.appendChild(cr_select_option);*/
           heading_tbl_row.appendChild(cr_td_for_select_color);
       }
+  //Theme OPTION
+    function theme_option()
+    {
+      var heading_tbl_row=document.getElementById('heading_tbl_row');
+      var cr_td_for_select_color=document.createElement("TD");
+      var cr_input=document.createElement("INPUT");
+      var cr_input_attrs={
+        type : 'color',
+        id   : 'select_theme',
+        value : '#fffffff'
+      }
+      for(var elm_attr in cr_input_attrs)
+      {
+        cr_input.setAttribute(elm_attr,cr_input_attrs[elm_attr]);
+      }
+      cr_input.addEventListener('change',funChangeTheme);
+      cr_td_for_select_color.appendChild(cr_input);
+      heading_tbl_row.appendChild(cr_td_for_select_color);
+    }
+    //change Theme--------
+    function funChangeTheme()
+    {
+      document.getElementById('new_doc_txtarea1').style.backgroundColor=document.getElementById('select_theme').value;
+    }
 //Change color for selected text---
     function funChangeColor()
       {
@@ -247,6 +302,16 @@ function fun_save(t)
                   var txtarea=document.getElementById('new_doc_txtarea1');
                   txtarea.parentElement.removeChild(txtarea);
               }
+      }
+//for delete color select option--------------------------------------------------------
+      function fun_del_select_theme_option()
+      {
+          if(document.getElementById('select_theme'))
+             {
+                var x=document.getElementById('select_theme').parentElement;
+                x.parentNode.removeChild(x);
+             }
+
       }
 //for delete color select option--------------------------------------------------------
       function fun_del_select_color_option()
